@@ -15,7 +15,7 @@ ABasePawn::ABasePawn()
 		RootComponent = CapsuleComp; //Making it a root
 
 	BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>( TEXT("BaseMesh") );
-		BaseMesh->SetupAttachment(CapsuleComp); // Attaching to Capsule
+		BaseMesh->SetupAttachment(CapsuleComp); // Attaching to Capsule	
 
 	TurretMesh = CreateDefaultSubobject<UStaticMeshComponent>( TEXT("Turret Mesh") );
 		TurretMesh->SetupAttachment(BaseMesh); // Attaching to BaseMesh
