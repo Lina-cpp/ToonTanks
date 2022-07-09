@@ -24,18 +24,3 @@ ABasePawn::ABasePawn()
 		ProjectileSpawnPoint->SetupAttachment(TurretMesh); // Attaching to TurretMesh
 
 }
-
-// Called when the game starts or when spawned
-void ABasePawn::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
-// Called every frame
-void ABasePawn::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-
