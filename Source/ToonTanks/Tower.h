@@ -25,6 +25,15 @@ protected:
 private:
 	class ATank* Tank;
 
+	//Turret Fire Range
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	float FireRange = 300.f;
+
+	//TimerHandle - counter, used in SetTimer()
+	FTimerHandle FireRateTimerHandle;
+	float FireRate = 2.f;
+	//callback function to check fire condition
+	void CheckFireCondition();
+
+	bool InFireRange();
 };
