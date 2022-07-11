@@ -33,5 +33,15 @@
 		"file": "C:\\Users\\Janek\\Documents\\UE5 - Projects\\ToonTanks\\Source\\ToonTanks\\ToonTanks.h",
 		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.32.31326\\bin\\HostX64\\x64\\cl.exe\" @\"C:\\Users\\Janek\\Documents\\UE5 - Projects\\ToonTanks\\.vscode\\compileCommands_ToonTanks\\ToonTanks.205.rsp\"",
 		"directory": "F:\\UE5\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\Janek\\Documents\\UE5 - Projects\\ToonTanks\\Source\\ToonTanks\\Tower.cpp",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.32.31326\\bin\\HostX64\\x64\\cl.exe\" @\"C:\\Users\\Janek\\Documents\\UE5 - Projects\\ToonTanks\\.vscode\\compileCommands_ToonTanks\\ToonTanks.205.rsp\"",
+		"directory": "F:\\UE5\\UE_5.0\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\Janek\\Documents\\UE5 - Projects\\ToonTanks\\Source\\ToonTanks\\Tower.h",
+		"command": "\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.32.31326\\bin\\HostX64\\x64\\cl.exe\" @\"C:\\Users\\Janek\\Documents\\UE5 - Projects\\ToonTanks\\.vscode\\compileCommands_ToonTanks\\ToonTanks.205.rsp\"",
+		"directory": "F:\\UE5\\UE_5.0\\Engine\\Source"
 	}
 ]

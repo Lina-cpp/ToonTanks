@@ -16,7 +16,10 @@ public:
 	ABasePawn();
 
 protected:
+	//Tank or Turret rotation
 	void RotateTurret(FVector LookAtTarget);
+	//shooting
+	void Fire();
 
 
 private:

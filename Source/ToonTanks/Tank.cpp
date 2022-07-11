@@ -24,6 +24,9 @@ void ATank::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponen
     PlayerInputComponent->BindAxis( TEXT("MoveForward"), this, &ATank::Move );
     //Turning left/right
     PlayerInputComponent->BindAxis( TEXT("Turn"), this, &ATank::Turn );
+
+    //Binding Fire() to Pressed Mouse button
+    PlayerInputComponent->BindAction( TEXT("Fire"), IE_Pressed, this, &ATank::Fire );
 }
 
 // Called every frame
