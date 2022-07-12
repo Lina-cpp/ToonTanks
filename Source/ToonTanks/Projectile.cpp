@@ -24,6 +24,9 @@ AProjectile::AProjectile()
 void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
+
+	//binding onhit() to OnHitComponent so we can do stuff on hit UwU
+	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
 	
 }
 
@@ -34,3 +37,11 @@ void AProjectile::Tick(float DeltaTime)
 
 }
 
+//declaration of OnHit function
+void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
+{
+	UE_LOG(LogTemp, Warning, TEXT("onhit!"));
+	UE_LOG(LogTemp, Warning, TEXT("Hit comp: %s"), *HitComp->GetName());
+	UE_LOG(LogTemp, Warning, TEXT("Other actor: %s"), *OtherActor->GetName());
+	UE_LOG(LogTemp, Warning, TEXT("Other comp: %s"), *OtherComp->GetName());
+}
