@@ -17,6 +17,13 @@ void ATower::Tick(float DeltaTime)
     }
 }
 
+//Destroying dead tower actor
+void ATower::HandleDestruction()
+{
+    Super::HandleDestruction();
+    Destroy();
+}
+
 
 void ATower::BeginPlay()
 {

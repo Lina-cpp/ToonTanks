@@ -26,6 +26,14 @@ ABasePawn::ABasePawn()
 		ProjectileSpawnPoint->SetupAttachment(TurretMesh); // Attaching to TurretMesh
 }
 
+//Destroying dead actors
+void ABasePawn::HandleDestruction()
+{
+	// TODO: Visual/sound effects
+
+}
+
+
 void ABasePawn::RotateTurret(FVector LookAtTarget)
 {
 	//calc the distance between cursor location and our turret mesh
@@ -50,7 +58,8 @@ void ABasePawn::Fire()
 	FRotator Rotation = ProjectileSpawnPoint->GetComponentRotation();
 
 	//Spawning projectile
-	GetWorld()->SpawnActor<AProjectile>(ProjectileClass, Location, Rotation);
+	auto Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileClass, Location, Rotation);
+	Projectile->SetOwner(this);
 
 	//DrawDebugSphere(GetWorld(),ProjectileSpawnPointLocation,25.f,12,FColor::Blue,false,3);
 }

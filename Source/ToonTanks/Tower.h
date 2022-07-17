@@ -17,6 +17,9 @@ class TOONTANKS_API ATower : public ABasePawn
 public:
 
 	virtual void Tick(float DeltaTime) override;
+	
+	//Destroying dead tower actor
+	void HandleDestruction();
 
 protected:
 	// Called when the game starts or when spawned

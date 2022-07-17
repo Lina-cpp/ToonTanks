@@ -15,6 +15,10 @@ public:
 	// Sets default values for this pawn's properties
 	ABasePawn();
 
+	//Destroying dead actors
+	void HandleDestruction();
+
+
 protected:
 	//Tank or Turret rotation
 	void RotateTurret(FVector LookAtTarget);

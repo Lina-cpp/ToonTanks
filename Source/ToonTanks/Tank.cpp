@@ -34,10 +34,10 @@ void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-    if(PlayerControllerRef) //checking if we possessed the controller
+    if(TankPlayerController) //checking if we possessed the controller
     {
         FHitResult HitResult;
-        PlayerControllerRef->GetHitResultUnderCursor(
+        TankPlayerController->GetHitResultUnderCursor(
             ECollisionChannel::ECC_Visibility, 
             false,
             HitResult);
@@ -51,13 +51,22 @@ void ATank::Tick(float DeltaTime)
 
 }
 
+//Hiding dead actor, so we can still have camera POV but can't move
+void ATank::HandleDestruction()
+{
+    Super::HandleDestruction();
+    SetActorHiddenInGame(true);
+    SetActorTickEnabled(false);
+}
+
+
 
 // Called when the game starts or when spawned
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 	
-    PlayerControllerRef = Cast<APlayerController>( GetController() );
+    TankPlayerController = Cast<APlayerController>( GetController() );
 
 }
 
