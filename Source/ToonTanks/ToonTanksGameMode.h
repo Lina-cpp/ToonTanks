@@ -28,4 +28,13 @@ private:
 	//getting TankPawn location
 	class ATank* Tank;
 
+	class AToonTanksPlayerController *ToonTanksPlayerController; 
+
+	//Delay after which we start the game
+	UPROPERTY(EditAnywhere)
+	float StartDelay = 3.f;
+
+	//function that takes care about game starting
+	void HandleGameStart();
+
 };
