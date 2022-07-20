@@ -44,6 +44,9 @@ void AToonTanksGameMode::HandleGameStart()
     //setting playerController pointer
     ToonTanksPlayerController = Cast<AToonTanksPlayerController> (UGameplayStatics::GetPlayerController(this, 0));
 
+    //blueprint function
+    StartGame();
+
     if(ToonTanksPlayerController)
     {
         //diabling input, so we can't move the tank

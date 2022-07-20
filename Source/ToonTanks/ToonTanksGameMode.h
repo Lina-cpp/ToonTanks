@@ -23,6 +23,10 @@ protected:
 
 	virtual void BeginPlay() override;
 
+	//creating blueprint function
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame(); 
+
 private:
 
 	//getting TankPawn location
