@@ -25,7 +25,11 @@ protected:
 
 	//creating blueprint function
 	UFUNCTION(BlueprintImplementableEvent)
-	void StartGame(); 
+	void StartGame();
+
+	//function to decide if we won or lost
+	UFUNCTION(BlueprintImplementableEvent)
+	void GameOver(bool bWonGame);
 
 private:
 
@@ -40,5 +44,10 @@ private:
 
 	//function that takes care about game starting
 	void HandleGameStart();
+
+	//numbers of turrets
+	int32 TargetTowers = 0;
+	//how many turrets exists
+	int32 GetTargetTowerCount();
 
 };

@@ -19,11 +19,21 @@ void AToonTanksGameMode::ActorDied(AActor *DeadActor)
                 //enabling/disabling tank (can you move him or not)
                 ToonTanksPlayerController->SetPlayerEnabledState(false);                
             }
+            //Tank destroyed - we lost
+            GameOver(false);
     }
     //if tower dies
     else if( ATower* DestroyedTower = Cast<ATower>(DeadActor) )
     {
         DestroyedTower->HandleDestruction();
+        //if turret is destroyed, number of turret -1
+        --TargetTowers;
+        //if all turrets are destroyed, game over
+        if(TargetTowers == 0)
+        {
+            GameOver(true);
+        }
+
     }
     
 }
@@ -39,6 +49,8 @@ void AToonTanksGameMode::BeginPlay()
 //function that takes care about game starting
 void AToonTanksGameMode::HandleGameStart()
 {
+    TargetTowers = GetTargetTowerCount();
+
     //setting tank pointer || this, cuz its THIS tank, 0 - player index
     Tank = Cast<ATank>( UGameplayStatics::GetPlayerPawn(this, 0) );
     //setting playerController pointer
@@ -68,5 +80,13 @@ void AToonTanksGameMode::HandleGameStart()
         false
         );
     }
+}
 
+int32 AToonTanksGameMode::GetTargetTowerCount()
+{
+    //Array of towers
+    TArray<AActor*> Towers;
+    //Counting the numeber of towers in the world
+    UGameplayStatics::GetAllActorsOfClass(this, ATower::StaticClass(), Towers);
+    return Towers.Num();
 }
