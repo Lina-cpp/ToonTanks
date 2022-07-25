@@ -5,6 +5,7 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "GameFramework/DamageType.h"
 #include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystemComponent.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -19,7 +20,9 @@ AProjectile::AProjectile()
 		ProjectileMovementCom->MaxSpeed = 1300.f;		//max proj. speed
 		ProjectileMovementCom->InitialSpeed = 1300.f;	//speed at start
 
-
+	//adding smoke trail following bullet
+	TrailParticles = CreateDefaultSubobject<UParticleSystemComponent>( TEXT("Smoke trail") );
+		TrailParticles->SetupAttachment(RootComponent);
 }
 
 // Called when the game starts or when spawned
@@ -51,7 +54,11 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 
 	//setting instigator
 	auto MyOwner = GetOwner();
-	if(MyOwner == nullptr) return;
+	if(MyOwner == nullptr)
+	{
+		Destroy();
+		return;
+	}
 
 	auto MyOwnerInstigator = MyOwner->GetInstigatorController();
 	auto DamageTypeClas = UDamageType::StaticClass();
@@ -60,8 +67,14 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 	if(OtherActor && OtherActor !=this && OtherActor != MyOwner)
 		{
 			UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageTypeClas);
-			Destroy();
+			//checking if HitParticles is valid
+			if(HitParticles)
+			{
+				//spawning HitEffect
+				UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), GetActorRotation() );
+			}
+
 		}
-
-
+	//Destroying projectile
+	Destroy();
 }
