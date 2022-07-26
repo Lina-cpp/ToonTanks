@@ -39,4 +39,8 @@ private:
 	//Allows to choose between BP_Projectile and Projectile(c++)
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectile> ProjectileClass;
+
+	//animation when pawn is destroyed
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	class UParticleSystem *DeathParticle;
 };

@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Projectile.h"
+#include "Particles/ParticleSystem.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -29,7 +30,14 @@ ABasePawn::ABasePawn()
 //Destroying dead actors
 void ABasePawn::HandleDestruction()
 {
-	// TODO: Visual/sound effects
+	//checking if DeathParticle is valid
+	if (DeathParticle)
+	{
+		//creating emitter
+		UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticle, GetActorLocation(), GetActorRotation());
+	}
+
+	// TODO: sound effects
 
 }
 
