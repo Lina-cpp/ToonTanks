@@ -32,6 +32,12 @@ void AProjectile::BeginPlay()
 
 	//binding onhit() to OnHitComponent so we can do stuff on hit UwU
 	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit);
+
+	//checking if launch sound is valid
+	if(LaunchSound)
+		{	
+			UGameplayStatics::PlaySoundAtLocation(this, LaunchSound, GetActorLocation());
+		}
 	
 }
 
@@ -65,7 +71,7 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 
 	//setting projectiles to deal damage and destroying them
 	if(OtherActor && OtherActor !=this && OtherActor != MyOwner)
-		{
+	{
 			UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageTypeClas);
 			//checking if HitParticles is valid
 			if(HitParticles)
@@ -73,8 +79,18 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 				//spawning HitEffect
 				UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), GetActorRotation() );
 			}
+		//checking if hitsound is valid
+		if(HitSound)
+			{	
+				//playing sound on hit
+				UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation());
+			}
+			if(HitCameraShakeClass)
+			{
+				 GetWorld()->GetFirstPlayerController()->ClientStartCameraShake(HitCameraShakeClass);
+			}
 
-		}
+	}
 	//Destroying projectile
 	Destroy();
 }
